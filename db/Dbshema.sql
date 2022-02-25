@@ -27,6 +27,3 @@ SET regDate = NOW(),
 updateDate = NOW(),
 title = 'title3',
 `body` = 'body3';
-
-select *
-from article
