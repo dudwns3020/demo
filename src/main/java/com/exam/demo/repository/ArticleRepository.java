@@ -1,60 +1,34 @@
 package com.exam.demo.repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Component;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.exam.demo.vo.Article;
 
-@Component
-public class ArticleRepository {
+@Mapper
+public interface ArticleRepository {
 
-	private int articlesLastId;
-	private List<Article> articles;
+	@Insert("INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = #{title}, `body` = #{body}")
+	public void writeArticle(@Param("title") String title, @Param("body") String body);
 
-	public ArticleRepository() {
-		articlesLastId = 0;
-		articles = new ArrayList<>();
-	}
+	@Select("SELECT * FROM article WHERE id = #{id}")
+	public Article getArticle(@Param("id") int id);
 
-	public Article writeArticle(String title, String body) {
-		int id = articlesLastId + 1;
-		Article article = new Article(id, title, body);
+	@Delete("DELETE FROM article WHERE id = #{id}")
+	public void deleteArticle(@Param("id") int id);
 
-		articles.add(article);
-		articlesLastId++;
+	@Update("UPDATE  article SET title = #{title}, `body` = #{body}, updateDate = NOW() WHERE id = #{id}")
+	public void modifyArticle(@Param("id") int id, @Param("title") String title, @Param("body") String body);
 
-		return article;
-	}
+	@Select("SELECT * FROM article ORDER BY id DESC")
+	public List<Article> getArticles();
 
-	public Article getArticle(int id) {
-		for (Article article : articles) {
-			if (article.getId() == id) {
-				return article;
-			}
-		}
-		return null;
-	}
-
-	public List<Article> getArticles() {
-		return articles;
-	}
-
-	public Article deleteArticle(int id) {
-		Article article = getArticle(id);
-
-		articles.remove(article);
-
-		return null;
-	}
-
-	public void modifyArticle(int id, String title, String body) {
-
-		Article article = getArticle(id);
-
-		article.setTitle(title);
-		article.setBody(body);
-	}
-
+	@Select("SELECT LAST_INSERT_ID()")
+	public int lastInsertId();
 }
