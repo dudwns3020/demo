@@ -18,10 +18,10 @@ public class UsrArticleController {
 
 	@RequestMapping("/usr/article/doAdd")
 	@ResponseBody
-	public Article doAdd(String title, String body) {		
+	public Article doAdd(String title, String body) {
 		int id = articleService.writeArticle(title, body);
 		Article article = articleService.getArticle(id);
-		
+
 		return article;
 	}
 
@@ -64,13 +64,6 @@ public class UsrArticleController {
 
 		if (article == null) {
 			return id + "번 게시물이 존재하지 않습니다.";
-		}
-
-		if (title == null) {
-			return "제목을 입력해주세요";
-		}
-		if (body == null) {
-			return "내용을 입력해주세요";
 		}
 
 		articleService.modifyArticle(id, title, body);
