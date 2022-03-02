@@ -11,18 +11,16 @@ public class MemberService {
 
 	@Autowired
 	private MemberRepository memberRepository;
-	
-
 
 	public int join(String loginId, String loginPw, String name) {
 		Member joinedMember = getMemberLoginId(loginId);
-		
+
 		if (joinedMember != null) {
 			return -1;
 		}
-		
+
 		memberRepository.join(loginId, loginPw, name);
-		
+
 		return memberRepository.getLastInsertId();
 	}
 
@@ -33,6 +31,4 @@ public class MemberService {
 	public Member getMemberLoginId(String loginId) {
 		return memberRepository.getMemberLoginId(loginId);
 	}
-
-
 }
