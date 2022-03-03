@@ -6,6 +6,7 @@ CREATE TABLE article(
 id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
 regDate DATETIME NOT NULL,
 updateDate DATETIME NOT NULL,
+memberId INT(10) UNSIGNED NOT NULL,
 title CHAR(100) NOT NULL,
 `body` TEXT NOT NULL
 );
@@ -13,18 +14,21 @@ title CHAR(100) NOT NULL,
 INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
+memberId = 1;
 title = 'title1',
 `body` = 'body1';
 
 INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
+memberId = 2;
 title = 'title2',
 `body` = 'body2';
 
 INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
+memberId = 3;
 title = 'title3',
 `body` = 'body3';
 
