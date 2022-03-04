@@ -33,13 +33,9 @@ public class UsrMemberController {
 		}
 
 		ResultData joinRd = memberService.join(loginId, loginPw, name);
-
-		if (joinRd.isFail()) {
-			return joinRd;
-		}
 		
-		Member member = memberService.getMemberById(joinRd.getData1());
-
+		Member member = memberService.getMemberById((int)joinRd.getData1());
+		
 		return ResultData.newData(joinRd, member);
 	}
 	

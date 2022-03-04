@@ -14,21 +14,21 @@ title CHAR(100) NOT NULL,
 INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
-memberId = 1;
+memberId = 1,
 title = 'title1',
 `body` = 'body1';
 
 INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
-memberId = 2;
+memberId = 2,
 title = 'title2',
 `body` = 'body2';
 
 INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
-memberId = 3;
+memberId = 3,
 title = 'title3',
 `body` = 'body3';
 

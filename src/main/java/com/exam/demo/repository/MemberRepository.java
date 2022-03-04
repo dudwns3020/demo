@@ -30,7 +30,7 @@ public interface MemberRepository {
 			FROM `member`
 			WHERE id = #{id};
 			""")
-	Member getMemberId(@Param("id") int id);
+	Member getMemberById(@Param("id") int id);
 
 	@Select("""
 			SELECT *

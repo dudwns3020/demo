@@ -2,29 +2,29 @@ package com.exam.demo.vo;
 
 import lombok.Getter;
 
-public class ResultData {
+public class ResultData<DT> {
 	@Getter
 	private String msg;
 	@Getter
-	private Object data1;
-	
+	private DT data1;
+
 	private ResultData() {
-		
+
 	}
 	
-	public static ResultData from(String msg) {
-		return from(msg);
+	public static <DT> ResultData from(String msg) {
+		return from(msg, null);
 	}
 	
-	public static ResultData from(String msg, Object data1) {
-		ResultData rd = new ResultData();
+	public static <DT> ResultData<DT> from(String msg, DT data1) {
+		ResultData<DT> rd = new ResultData<DT>();
 		rd.msg = msg;
 		rd.data1 = data1;
 		
 		return rd;
 	}
-	
-	public static ResultData newData(ResultData joinRd, Object newData) {
+
+	public static <DT> ResultData<DT> newData(ResultData joinRd, DT newData) {
 		return from(joinRd.getMsg(), newData);
 	}
 
