@@ -35,8 +35,24 @@ public class ArticleService {
 		articleRepository.deleteArticle(id);
 	}
 
-	public void modifyArticle(int id, String title, String body) {
+	public ResultData<Article> modifyArticle(int id, String title, String body) {
 		articleRepository.modifyArticle(id, title, body);
+
+		Article article = getArticle(id);
+
+		return ResultData.from(Ut.f("%d번 게시물을 수정했습니다.", id), article);
+	}
+
+	public ResultData actorCanModify(int actorId, Article article, int id) {
+		if (article == null) {
+			ResultData.from("%d번 게시물이 존재하지 않습니다.", id);
+		}
+
+		if (article.getMemberId() != actorId) {
+			return ResultData.from("%d번 게시물의 작성자가 아닙니다.", id);
+		}
+
+		return ResultData.from("%d번 게시물은 수정이 가능합니다.", id);
 	}
 
 }
