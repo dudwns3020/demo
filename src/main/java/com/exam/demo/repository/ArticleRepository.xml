@@ -12,10 +12,20 @@
 		`body` = #{body}
 	</insert>
 	
-	<select id="getArticle" resultType="com.exam.demo.vo.Article">
-		SELECT *
+	<select id="getArticle" resultType="Article">
+		SELECT article.*, `member`.name AS writerName
 		FROM article
-		WHERE id = #{id}
+		LEFT JOIN `member`
+		ON article.memberId = `member`.id
+		WHERE article.id = #{id}
+	</select>
+	
+	<select id="getArticles" resultType="Article">
+		SELECT article.*, `member`.name AS writerName
+		FROM article
+		LEFT JOIN `member`
+		ON article.memberId = `member`.id 
+		ORDER BY id DESC
 	</select>
 	
 	<delete id="deleteArticle">
@@ -36,12 +46,6 @@
 		</set>
 		WHERE id = #{id}
 	</update>
-	
-	<select id="getArticles" resultType="com.exam.demo.vo.Article">
-		SELECT *
-		FROM article
-		ORDER BY id DESC
-	</select>
 	
 	<select id="getLastInsertId" resultType="int">
 		SELECT LAST_INSERT_ID()

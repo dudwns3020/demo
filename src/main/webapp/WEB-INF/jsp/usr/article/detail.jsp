@@ -38,7 +38,12 @@
 		</tbody>
 	</table>
 	<div>
-		<a href="../article/list">뒤로가기</a>
+		<button type="button" onclick="history.back();">뒤로가기</button>
+	</div>
+	<div>
+		<a onclick="if(confirm('게시물을 삭제하시겠습니까?') == false) {return false;}"
+			href="../article/doDelete?id=${article.id }">삭제하기</a> 
+		<a href="../article/doModify?id=${article.id }">수정하기</a>
 	</div>
 </body>
 </html>
