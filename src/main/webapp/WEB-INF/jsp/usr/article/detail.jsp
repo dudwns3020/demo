@@ -41,9 +41,12 @@
 		<button type="button" onclick="history.back();">뒤로가기</button>
 	</div>
 	<div>
-		<a onclick="if(confirm('게시물을 삭제하시겠습니까?') == false) {return false;}"
-			href="../article/doDelete?id=${article.id }">삭제하기</a> 
-		<a href="../article/doModify?id=${article.id }">수정하기</a>
+		<c:if test="${ article.canDelete }">
+			<a
+				onclick="if ( confirm('게시물을 삭제하시겠습니까?') == false ) { return false; }"
+				href="../article/doDelete?id=${article.id}">게시물 삭제</a>
+			<a href="../article/modify?id=${article.id}">게시물 수정</a>
+		</c:if>
 	</div>
 </body>
 </html>
