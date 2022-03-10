@@ -7,12 +7,15 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.exam.demo.interceptor.BeforeActionInterceptor;
+import com.exam.demo.interceptor.NeedLoginInterceptor;
 
 @Configuration
 public class MyWebConfig implements WebMvcConfigurer {
 
 	@Autowired
 	BeforeActionInterceptor beforeActionInterceptor;
+	@Autowired
+	NeedLoginInterceptor needLoginInterceptor;
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
@@ -20,5 +23,8 @@ public class MyWebConfig implements WebMvcConfigurer {
 		InterceptorRegistration interceptorRegistration = registry.addInterceptor(beforeActionInterceptor);
 
 		interceptorRegistration.addPathPatterns("/**").excludePathPatterns("resource/**");
+
+		registry.addInterceptor(needLoginInterceptor).addPathPatterns("/usr/article/doAdd")
+				.addPathPatterns("/usr/article/doDelete").addPathPatterns("/usr/article/doModify");
 	}
 }
