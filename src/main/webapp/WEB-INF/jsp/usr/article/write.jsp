@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시물 상세보기</title>
+<title>게시물 작성</title>
 </head>
 <body>
-	<h1>게시물 상세보기</h1>
+	<h1>게시물 작성</h1>
 	<table border=1>
 		<tbody>
 			<tr>

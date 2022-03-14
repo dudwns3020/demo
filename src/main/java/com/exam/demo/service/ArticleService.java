@@ -64,16 +64,16 @@ public class ArticleService {
 		return ResultData.from(Ut.f("%d번 게시물을 수정했습니다.", id), article);
 	}
 
-	public ResultData actorCanModify(int actorId, Article article, int id) {
+	public ResultData actorCanModify(int actorId, Article article) {
 		if (article == null) {
-			ResultData.from("%d번 게시물이 존재하지 않습니다.", id);
+			ResultData.from("게시물이 존재하지 않습니다.");
 		}
 
 		if (article.getMemberId() != actorId) {
-			return ResultData.from("%d번 게시물의 작성자가 아닙니다.", id);
+			return ResultData.from("게시물의 작성자가 아닙니다.");
 		}
 
-		return ResultData.from("%d번 게시물은 수정이 가능합니다.", id);
+		return ResultData.from("게시물은 수정이 가능합니다.");
 	}
 
 }
