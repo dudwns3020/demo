@@ -13,8 +13,8 @@ public class MemberService {
 
 	@Autowired
 	private MemberRepository memberRepository;
-
-	public ResultData join(String loginId, String loginPw, String name) {
+	
+	public ResultData<Integer> join(String loginId, String loginPw, String name) {
 		Member joinedMember = getMemberLoginId(loginId);
 
 		if (joinedMember != null) {//오류
@@ -28,7 +28,7 @@ public class MemberService {
 		return ResultData.from(Ut.f("회원가입이 완료되었습니다."), id);
 	}
 
-	public Member getMemberById(int id) {
+	public  Member getMemberId(int id) {
 		return memberRepository.getMemberById(id);
 	}
 

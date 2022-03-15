@@ -24,7 +24,7 @@ public class UsrArticleController {
 
 	@RequestMapping("/usr/article/doAdd")
 	@ResponseBody
-	public ResultData<Article> doAdd(HttpServletRequest req, String title, String body) {
+	public String doAdd(HttpServletRequest req, String title, String body) {
 		Rq rq = (Rq) req.getAttribute("rq");
 
 //		if (rq.isLogined() == false) {
@@ -32,10 +32,10 @@ public class UsrArticleController {
 //		}
 
 		if (Ut.empty(title)) {
-			return ResultData.from("title을(를) 입력해주세요.");
+			return Ut.jsHistoryBack("title을(를) 입력해주세요.");
 		}
 		if (Ut.empty(body)) {
-			return ResultData.from("body을(를) 입력해주세요.");
+			return Ut.jsHistoryBack("body을(를) 입력해주세요.");
 		}
 
 		ResultData<Integer> writeArticleRd = articleService.writeArticle(rq.getLoginedMemberId(), title, body);
@@ -44,7 +44,7 @@ public class UsrArticleController {
 
 		Article article = articleService.getArticle(rq.getLoginedMemberId(), id);
 
-		return ResultData.newData(writeArticleRd, article);
+		return Ut.jsReplace(Ut.f("%d번 게시물이 생성되었습니다.", id), "../article/list");
 	}
 	
 	@RequestMapping("/usr/article/write")
@@ -110,7 +110,7 @@ public class UsrArticleController {
 
 		articleService.deleteArticle(id);
 
-		return Ut.jsReplace(Ut.f("%d번 게시물은 삭제되었습니다.", id), "/usr/article/list");
+		return Ut.jsReplace(Ut.f("%d번 게시물은 삭제되었습니다.", id), "../article/list");
 	}
 
 	@RequestMapping("/usr/article/modify")

@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>수정 페이지</title>
-</head>
-<body>
-	<h1>수정 페이지</h1>
+
+<c:set var="pageTitle" value="게시물 수정" />
+
+<%@ include file="../common/head.jspf"%>
+
+
 	<form method="POST" action="../article/doModify">
 		<input type="hidden" name="id" value="${article.id }" />
 		<table border="1">
@@ -43,6 +41,7 @@
 		</table>
 		<div>
 			<input type="submit" value="수정" />
+			<%--<button type="button" onclick="history.back();">뒤로가기</button>--%>
 			<a href="../article/detail?id=${article.id }">뒤로가기</a>
 		</div>
 	</form>
