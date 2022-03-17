@@ -13,7 +13,7 @@
 				<td><input name="loginId" type="text" placeholder="로그인 아이디" /></td>
 			</tr>
 			<tr>
-				<td><input name="loginPw" type="text" placeholder="비밀번호" /></td>
+				<td><input name="loginPw" type="password" placeholder="비밀번호" /></td>
 			</tr>
 		</table>
 		<div>

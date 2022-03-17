@@ -6,6 +6,8 @@
 
 <%@ include file="../common/head.jspf" %>
 
+	<a href="../article/write">게시물 작성</a>
+
 	<table border=1>
 		<thead>
 			<tr>

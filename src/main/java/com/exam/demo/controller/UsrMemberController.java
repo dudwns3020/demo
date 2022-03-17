@@ -1,7 +1,6 @@
 package com.exam.demo.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,6 +40,11 @@ public class UsrMemberController {
 		return ResultData.newData(joinRd, member);
 	}
 
+	@RequestMapping("usr/member/join")
+	public String join() {
+		return "usr/member/join";
+	}
+
 	@RequestMapping("usr/member/doLogin")
 	@ResponseBody
 	public String doLogin(HttpServletRequest req, String loginId, String loginPw) {
@@ -49,9 +53,9 @@ public class UsrMemberController {
 //		if (httpSession.getAttribute("loginedMemberId") != null) {
 //			isLogined = true;
 //		}
-		
-		Rq rq = (Rq)req.getAttribute("rq");
-		
+
+		Rq rq = (Rq) req.getAttribute("rq");
+
 		if (rq.isLogined()) {
 			return Ut.jsHistoryBack("이미 로그인 되었습니다.");
 		}
@@ -92,8 +96,8 @@ public class UsrMemberController {
 //		if (httpSession.getAttribute("loginedMemberId") == null) {
 //			isLogined = true;
 //		}
-		Rq rq = (Rq)req.getAttribute("rq");
-		
+		Rq rq = (Rq) req.getAttribute("rq");
+
 		if (!rq.isLogined()) {
 			return Ut.jsHistoryBack("이미 로그아웃 되었습니다.");
 		}
