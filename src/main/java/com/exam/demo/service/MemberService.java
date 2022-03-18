@@ -14,18 +14,20 @@ public class MemberService {
 	@Autowired
 	private MemberRepository memberRepository;
 	
-	public ResultData<Integer> join(String loginId, String loginPw, String name) {
+	public String join(String loginId, String loginPw, String name) {
 		Member joinedMember = getMemberLoginId(loginId);
 
 		if (joinedMember != null) {//오류
-			return ResultData.from(Ut.f("해당 로그인 아이디(%s)는 이미 사용중입니다.", loginId));
+//			return ResultData.from(Ut.f("해당 로그인 아이디(%s)는 이미 사용중입니다.", loginId));
+			return Ut.f("해당 로그인 아이디(%s)는 이미 사용중입니다.", loginId);
 		}
 
 		memberRepository.join(loginId, loginPw, name);
 
 		int id = memberRepository.getLastInsertId();
 		
-		return ResultData.from(Ut.f("회원가입이 완료되었습니다."), id);
+//		return ResultData.from(Ut.f("회원가입이 완료되었습니다."), id);
+		return Ut.f("회원가입이 완료되었습니다.", id);
 	}
 
 	public  Member getMemberId(int id) {

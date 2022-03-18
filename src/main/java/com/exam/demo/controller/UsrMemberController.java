@@ -21,23 +21,28 @@ public class UsrMemberController {
 
 	@RequestMapping("usr/member/doJoin")
 	@ResponseBody
-	public ResultData doJoin(String loginId, String loginPw, String name) {
+	public String doJoin(String loginId, String loginPw, String name) {
 
 		if (Ut.empty(loginId)) {
-			return ResultData.from("loginId(을)를 입력해주세요.");
+//			return ResultData.from("loginPw(을)를 입력해주세요.");
+			return Ut.f("loginId(을)를 입력해주세요.");
 		}
 		if (Ut.empty(loginPw)) {
-			return ResultData.from("loginPw(을)를 입력해주세요.");
+//			return ResultData.from("loginPw(을)를 입력해주세요.");
+			return Ut.f("loginPw(을)를 입력해주세요.");
 		}
 		if (Ut.empty(name)) {
-			return ResultData.from("name(을)를 입력해주세요.");
+//			return ResultData.from("name(을)를 입력해주세요.");
+			return Ut.f("name(을)를 입력해주세요.");
 		}
 
-		ResultData joinRd = memberService.join(loginId, loginPw, name);
+//		ResultData joinRd = memberService.join(loginId, loginPw, name);
+		memberService.join(loginId, loginPw, name);
 
-		Member member = memberService.getMemberId((int) joinRd.getData1());
+//		Member member = memberService.getMemberId((int) joinRd.getData1());
 
-		return ResultData.newData(joinRd, member);
+//		return ResultData.newData(joinRd, member);
+		return Ut.jsReplace(Ut.f("회원가입이 완료되었습니다."), "../member/login");
 	}
 
 	@RequestMapping("usr/member/join")
