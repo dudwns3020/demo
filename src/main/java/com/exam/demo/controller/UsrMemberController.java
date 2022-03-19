@@ -21,28 +21,27 @@ public class UsrMemberController {
 
 	@RequestMapping("usr/member/doJoin")
 	@ResponseBody
-	public String doJoin(String loginId, String loginPw, String name) {
+	public ResultData<Member> doJoin(String loginId, String loginPw, String name) {
 
 		if (Ut.empty(loginId)) {
-//			return ResultData.from("loginPw(을)를 입력해주세요.");
-			return Ut.f("loginId(을)를 입력해주세요.");
+			return ResultData.from("loginPw(을)를 입력해주세요.");
 		}
 		if (Ut.empty(loginPw)) {
-//			return ResultData.from("loginPw(을)를 입력해주세요.");
-			return Ut.f("loginPw(을)를 입력해주세요.");
+			return ResultData.from("loginPw(을)를 입력해주세요.");
 		}
 		if (Ut.empty(name)) {
-//			return ResultData.from("name(을)를 입력해주세요.");
-			return Ut.f("name(을)를 입력해주세요.");
+			return ResultData.from("name(을)를 입력해주세요.");
 		}
 
-//		ResultData joinRd = memberService.join(loginId, loginPw, name);
-		memberService.join(loginId, loginPw, name);
+		ResultData joinRd = memberService.join(loginId, loginPw, name);
+		
+		if(joinRd.getData1() == null) {
+			return ResultData.from(Ut.f("해당 로그인 아이디(%s)는 이미 사용중입니다.", loginId));
+		}
 
-//		Member member = memberService.getMemberId((int) joinRd.getData1());
+		Member member = memberService.getMemberId((int) joinRd.getData1());
 
-//		return ResultData.newData(joinRd, member);
-		return Ut.jsReplace(Ut.f("회원가입이 완료되었습니다."), "../member/login");
+		return ResultData.newData(joinRd, member);
 	}
 
 	@RequestMapping("usr/member/join")
