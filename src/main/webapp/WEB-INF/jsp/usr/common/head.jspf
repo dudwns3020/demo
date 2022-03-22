@@ -16,14 +16,20 @@
 	<header>
 		<ul>
 			<li><a href="/usr/article/list">리스트</a></li>
-			<li><a href="/usr/member/join">회원가입</a></li>
 		</ul>
+		<c:if test="${rq.loginedMemberId eq '0'}">
+			<ul>
+				<li><a href="/usr/member/login">로그인</a></li>
+				<li><a href="/usr/member/join">회원가입</a></li>
+			</ul>
+		</c:if>
+		<c:if test="${rq.loginedMemberId ne '0'}">
+			<ul>
+				<li><a href="/usr/member/doLogout">로그아웃</a></li>
+			</ul>
+			<div>'${rq.loginedMemberName.name}' 님 환영합니다.</div>
+		</c:if>
 
-		<ul>
-			<li><a href="/usr/member/login">로그인</a></li>
-			<li><a href="/usr/member/doLogout">로그아웃</a></li>
-		</ul>
-		<div>${rq.loginedMemberName.name}</div>
 	</header>
 
 	<hr />

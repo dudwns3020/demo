@@ -4,31 +4,34 @@
 
 <c:set var="pageTitle" value="게시물 리스트" />
 
-<%@ include file="../common/head.jspf" %>
+<%@ include file="../common/head.jspf"%>
 
-	<a href="../article/write">게시물 작성</a>
-
-	<table border=1>
-		<thead>
+<table border=1>
+	<thead>
+		<tr>
+			<th>번호</th>
+			<th>작성날짜</th>
+			<th>수정날짜</th>
+			<th>제목</th>
+			<th>작성자</th>
+		</tr>
+	</thead>
+	<tbody>
+		<c:forEach var="article" items="${articles }">
 			<tr>
-				<th>번호</th>
-				<th>작성날짜</th>
-				<th>수정날짜</th>
-				<th>제목</th>
-				<th>작성자</th>
+				<td>${article.id }</td>
+				<td>${article.regDate.substring(2,16) }</td>
+				<td>${article.updateDate.substring(2,16) }</td>
+				<td><a href="../article/detail?id=${article.id }">${article.title }</a></td>
+				<td>${article.writerName }</td>
 			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="article" items="${articles }">
-				<tr>
-					<td>${article.id }</td>
-					<td>${article.regDate.substring(2,16) }</td>
-					<td>${article.updateDate.substring(2,16) }</td>
-					<td><a href="../article/detail?id=${article.id }">${article.title }</a></td>
-					<td>${article.writerName }</td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+		</c:forEach>
+	</tbody>
+</table>
+
+<c:if test="${rq.loginedMemberId ne '0'}">
+	<a href="../article/write">게시물 작성</a>
+</c:if>
+
 </body>
 </html>
