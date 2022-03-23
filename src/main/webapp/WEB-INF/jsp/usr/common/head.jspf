@@ -6,30 +6,47 @@
 <head>
 <meta charset="UTF-8">
 <title>${pageTitle}</title>
+
+<scrpit
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></scrpit>
+
+<script src="https://unpkg.com/tailwindcss-jit-cdn"></script>
+
+<link rel="stylesheet" href="https://cdnjs.com/libraries/font-awesome" />
+<link rel="stylesheet" href="/resource/common.css">
+<script src="/resource/common.js"></script>
+
 </head>
 
 <body>
-	<h1 style="line-height: 2rem;">${pageTitle}</h1>
-
-	<a href="/">사이트</a>
 
 	<header>
-		<ul>
-			<li><a href="/usr/article/list">리스트</a></li>
-		</ul>
-		<c:if test="${rq.loginedMemberId eq '0'}">
-			<ul>
-				<li><a href="/usr/member/login">로그인</a></li>
-				<li><a href="/usr/member/join">회원가입</a></li>
-			</ul>
-		</c:if>
-		<c:if test="${rq.loginedMemberId ne '0'}">
-			<ul>
-				<li><a href="/usr/member/doLogout">로그아웃</a></li>
-			</ul>
-			<div>'${rq.loginedMemberName.name}' 님 환영합니다.</div>
-		</c:if>
 
+		<div class="container mx-auto flex h-20">
+			<a href="/" class="flex items-center px-3"> <span>사이트</span>
+			</a>
+
+			<div class="flex-grow"></div>
+
+			<ul class="flex">
+				<li><a class="h-full flex items-center px-3 hover:underline"
+					href="/usr/article/list"><span>리스트</span></a></li>
+				<c:if test="${rq.loginedMemberId eq '0'}">
+
+					<li><a class="h-full flex items-center px-3 hover:underline"
+						href="/usr/member/login"><span>로그인</span></a></li>
+					<li><a class="h-full flex items-center px-3 hover:underline"
+						href="/usr/member/join"><span>회원가입</span></a></li>
+
+				</c:if>
+				<c:if test="${rq.loginedMemberId ne '0'}">
+					<li><a class="h-full flex items-center px-3 hover:underline"
+						href="/usr/member/doLogout"><span>로그아웃</span></a></li>
+
+					<div class="h-full flex items-center px-3 ">'${rq.loginedMemberName.name}'
+						님 환영합니다.</div>
+				</c:if>
+			</ul>
+		</div>
 	</header>
-
 	<hr />
