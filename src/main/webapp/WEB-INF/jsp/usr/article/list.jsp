@@ -32,13 +32,14 @@
 				</tbody>
 			</table>
 		</div>
+	<c:if test="${rq.loginedMemberId ne '0'}">
+		<a class="flex items-center h-10 hover:underline" href="../article/write">게시물 작성</a>
+	</c:if>
 	</div>
 </section>
 
 
-<c:if test="${rq.loginedMemberId ne '0'}">
-	<a href="../article/write">게시물 작성</a>
-</c:if>
+
 
 </body>
 </html>

@@ -23,14 +23,18 @@ public class ArticleService {
 		return ResultData.from(Ut.f("%d번 게시물이 생성되었습니다.", id), id);
 	}
 
-	public List<Article> getArticles(int actorId) {
-		List<Article> articles = articleRepository.getArticles();
+	public List<Article> getArticles(int actorId, int itemsCountPage, int page) {
+		int limitStart = (page-1) * itemsCountPage;
+		int limitEnd = itemsCountPage;
+		
+		
+		List<Article> articles = articleRepository.getArticles(limitStart, limitEnd);
 
 		for (Article article : articles) {
 			updateData(actorId, article);
 		}
 
-		return articleRepository.getArticles();
+		return articleRepository.getArticles(limitStart, limitEnd);
 	}
 
 	public Article getArticle(int actorId, int id) {
@@ -61,7 +65,7 @@ public class ArticleService {
 
 		Article article = getArticle(actorId, id);
 
-		return ResultData.from(Ut.f("%d번 게시물을 수정했습니다.", id), article);
+		return ResultData.from(Ut.f("", id), article);
 	}
 
 //	public ResultData actorCanModify(int actorId, Article article) {

@@ -21,22 +21,23 @@
 						</tr>
 						<tr>
 							<th>제목</th>
-							<td><input name="title" type="text"
+							<td><input name="title" type="text" class="w-full"
 								value="${article.title }" placeholder="제목을 입력해주세요" /></td>
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td><input name="body" type="text" value="${article.body }"
-								placeholder="내용을 입력해주세요" /></td>
+							<td><input name="body" type="text" class="w-full"
+								value="${article.body }" placeholder="내용을 입력해주세요" /></td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
+			<div>
+				<input class="bg-white h-10 hover:underline" type="submit"
+					value="작성" /> / <a class="hover:underline" href="../article/list">뒤로가기</a>
+			</div>
 		</div>
 	</section>
-	<div>
-		<input type="submit" value="작성" /> <a href="../article/list">뒤로가기</a>
-	</div>
 </form>
 </body>
 </html>

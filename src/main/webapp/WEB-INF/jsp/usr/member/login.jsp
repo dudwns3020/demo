@@ -7,22 +7,28 @@
 <%@ include file="../common/head.jspf"%>
 
 
-	<form method="POST" action="../member/doLogin">
-		<table>
-			<tr>
-				<td><input name="loginId" type="text" placeholder="로그인 아이디" /></td>
-			</tr>
-			<tr>
-				<td><input name="loginPw" type="password" placeholder="비밀번호" /></td>
-			</tr>
-		</table>
-		<div>
-			<input type="submit" value="로그인" />
+<form method="POST" action="../member/doLogin">
+	<section class="mt-5">
+		<div class="container mx-auto px-3">
+			<div class="table-box-type-1">
+				<table>
+					<tr>
+						<td><input class="w-full" name="loginId" type="text" placeholder="로그인 아이디" /></td>
+					</tr>
+					<tr>
+						<td><input class="w-full" name="loginPw" type="password" placeholder="비밀번호" /></td>
+					</tr>
+				</table>
+				<div>
+					<input type="submit" value="로그인" />
+				</div>
+				<hr />
+				<div>
+					<button type="button" onclick="history.back();">뒤로가기</button>
+				</div>
+			</div>
 		</div>
-		<hr />
-		<div>
-			<button type="button" onclick="history.back();">뒤로가기</button>
-		</div>
-	</form>
+	</section>
+</form>
 </body>
 </html>

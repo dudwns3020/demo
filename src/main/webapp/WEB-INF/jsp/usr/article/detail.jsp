@@ -38,20 +38,22 @@
 				</tbody>
 			</table>
 		</div>
+		<div>
+			<c:if test="${ article.canDelete }">
+				<a class="hover:underline" href="../article/modify?id=${article.id}">게시물
+					수정</a>
+					/
+				<a
+					onclick="if ( confirm('게시물을 삭제하시겠습니까?') == false ) { return false; }"
+					class="hover:underline" href="../article/doDelete?id=${article.id}">게시물
+					삭제</a>
+					/
+			</c:if>
+			<%--<button type="button" onclick="history.back();">뒤로가기</button>--%>
+			<a class="hover:underline" href="../article/list">뒤로가기</a>
+		</div>
 	</div>
 </section>
 
-<div>
-	<c:if test="${ article.canDelete }">
-		<a
-			onclick="if ( confirm('게시물을 삭제하시겠습니까?') == false ) { return false; }"
-			href="../article/doDelete?id=${article.id}">게시물 삭제</a>
-		<a href="../article/modify?id=${article.id}">게시물 수정</a>
-	</c:if>
-</div>
-<div>
-	<%--<button type="button" onclick="history.back();">뒤로가기</button>--%>
-	<a href="../article/list">뒤로가기</a>
-</div>
 </body>
 </html>
