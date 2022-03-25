@@ -58,11 +58,18 @@ public class UsrArticleController {
 	public String getArticles(HttpServletRequest req, Model model, @RequestParam(defaultValue = "1") int page) {
 		Rq rq = (Rq) req.getAttribute("rq");
 		
+		int totalPage = articleService.getArticlesCount();
+		
 		int itemsCountPage = 10;
+		
+		int pageCount = (int)Math.ceil((double)totalPage / itemsCountPage);
 
 		List<Article> articles = articleService.getArticles(rq.getLoginedMemberId(), itemsCountPage, page);
 
 		model.addAttribute("articles", articles);
+		model.addAttribute("page", page);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("pageCount", pageCount);
 
 		return "/usr/article/list";
 	}

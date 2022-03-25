@@ -21,4 +21,6 @@ public interface ArticleRepository {
 	public List<Article> getArticles(int limitStart, int limitEnd);
 
 	public int getLastInsertId();
+	
+	public int getArticlesCount();
 }

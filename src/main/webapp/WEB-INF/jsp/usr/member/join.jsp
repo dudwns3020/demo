@@ -29,8 +29,10 @@
 					</tbody>
 				</table>
 				<div>
-					<input type="submit" value="회원가입" />
-					<button onclick="history.back();">뒤로가기</button>
+					<input class="bg-white hover:underline" type="submit" value="회원가입" />
+				</div>
+				<div>
+					<button class="hover:underline" onclick="history.back();">뒤로가기</button>
 				</div>
 			</div>
 		</div>

@@ -80,5 +80,9 @@ public class ArticleService {
 //		return ResultData.from("게시물은 수정이 가능합니다.");
 //
 //	}
+	
+	public int getArticlesCount() {
+		return articleRepository.getArticlesCount();
+	}
 
 }

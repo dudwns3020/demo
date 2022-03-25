@@ -20,11 +20,10 @@
 					</tr>
 				</table>
 				<div>
-					<input type="submit" value="로그인" />
+					<input class="bg-white hover:underline" type="submit" value="로그인" />
 				</div>
-				<hr />
 				<div>
-					<button type="button" onclick="history.back();">뒤로가기</button>
+					<button class="hover:underline" type="button" onclick="history.back();">뒤로가기</button>
 				</div>
 			</div>
 		</div>

@@ -32,9 +32,21 @@
 				</tbody>
 			</table>
 		</div>
-	<c:if test="${rq.loginedMemberId ne '0'}">
-		<a class="flex items-center h-10 hover:underline" href="../article/write">게시물 작성</a>
-	</c:if>
+		<c:if test="${rq.loginedMemberId ne '0'}">
+			<a class="hover:underline" href="../article/write">게시물 작성</a>
+		</c:if>
+		<div class="center">
+			<c:if test="${page ne '1' }">
+				<a class="hover:underline" href="/usr/article/list?page=1">◁</a>&nbsp;
+				<a class="hover:underline" href="/usr/article/list?page=${page-1 }">◀</a>&nbsp;
+			</c:if>
+			${page}&nbsp;&nbsp;/&nbsp;&nbsp;${pageCount }&nbsp;
+			<c:if test="${page ne pageCount }">
+				<a class="hover:underline" href="/usr/article/list?page=${page+1 }">▶</a>
+				<a class="hover:underline"
+					href="/usr/article/list?page=${pageCount }">▷</a>
+			</c:if>
+		</div>
 	</div>
 </section>
 
