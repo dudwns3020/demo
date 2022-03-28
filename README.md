@@ -157,6 +157,7 @@ articleRepository.xml
 - 게시물 작성
 
 <img src="https://user-images.githubusercontent.com/68069311/160415104-ee314040-a239-43c8-9ea3-352e08174a9f.png" width="full" height="full" >
+<img src="https://user-images.githubusercontent.com/68069311/160422879-2ac89cd2-26c5-44ad-8cd9-e8e09d038a27.png" width="full" height="full" >
 
 write.jsp
 
@@ -202,6 +203,7 @@ articleRepository.xml
 - 게시물 수정
 
 <img src="https://user-images.githubusercontent.com/68069311/160413267-16b1b2c9-87cb-45ed-ac9a-2c179ca4b60c.png" width="full" height="full" >
+<img src="https://user-images.githubusercontent.com/68069311/160422884-18c2371e-cd19-4952-b8bf-81a24c2bbbab.png" width="full" height="full" >
 
 modify.jsp
 
