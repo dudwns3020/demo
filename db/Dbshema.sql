@@ -61,3 +61,17 @@ updateDate = NOW(),
 loginId = 'user3',
 loginPw = 'user3',
 `name` = 'user3';
+
+CREATE TABLE reply (
+id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+regDate DATETIME NOT NULL,
+updateDate DATETIME NOT NULL,
+reply CHAR(100) NOT NULL,
+writer CHAR(50) NOT NULL
+);
+
+INSERT INTO reply
+SET regDate = NOW(),
+updateDate = NOW(),
+reply = '댓글1',
+writer = '댓글작성자';
