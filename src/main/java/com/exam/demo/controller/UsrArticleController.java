@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.exam.demo.service.ArticleService;
+import com.exam.demo.service.BoardService;
 import com.exam.demo.util.Ut;
 import com.exam.demo.vo.Article;
+import com.exam.demo.vo.Board;
 import com.exam.demo.vo.ResultData;
 import com.exam.demo.vo.Rq;
 
@@ -22,6 +24,8 @@ public class UsrArticleController {
 
 	@Autowired
 	private ArticleService articleService;
+	@Autowired
+	private BoardService boardService;
 
 	@RequestMapping("/usr/article/doAdd")
 	@ResponseBody
@@ -55,8 +59,10 @@ public class UsrArticleController {
 	}
 
 	@RequestMapping("/usr/article/list")
-	public String getArticles(HttpServletRequest req, Model model, @RequestParam(defaultValue = "1") int page) {
+	public String getArticles(HttpServletRequest req, Model model, int boardId, @RequestParam(defaultValue = "1") int page) {
 		Rq rq = (Rq) req.getAttribute("rq");
+		
+		Board board = boardService.getBoardId(boardId); 
 		
 		int totalPage = articleService.getArticlesCount();
 		
@@ -67,6 +73,7 @@ public class UsrArticleController {
 		List<Article> articles = articleService.getArticles(rq.getLoginedMemberId(), itemsCountPage, page);
 
 		model.addAttribute("articles", articles);
+		model.addAttribute("board", board);
 		model.addAttribute("page", page);
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("pageCount", pageCount);

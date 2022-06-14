@@ -62,16 +62,36 @@ loginId = 'user3',
 loginPw = 'user3',
 `name` = 'user3';
 
-CREATE TABLE reply (
+CREATE TABLE board (
 id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
 regDate DATETIME NOT NULL,
 updateDate DATETIME NOT NULL,
-reply CHAR(100) NOT NULL,
-writer CHAR(50) NOT NULL
+`code` CHAR(20) NOT NULL UNIQUE,
+`name` CHAR(20) NOT NULL UNIQUE
 );
 
-INSERT INTO reply
+INSERT INTO board
 SET regDate = NOW(),
 updateDate = NOW(),
-reply = '댓글1',
-writer = '댓글작성자';
+`code` = 'notice',
+`name` = '공지사항';
+
+INSERT INTO board
+SET regDate = NOW(),
+updateDate = NOW(),
+`code` = 'free1',
+`name` = '자유게시판';
+
+ALTER TABLE article ADD COLUMN boardId INT(10) UNSIGNED NOT NULL AFTER `updateDate`;
+
+UPDATE article
+SET boardId = 1
+WHERE id = 1;
+
+UPDATE article
+SET boardId = 2
+WHERE id = 2;
+
+UPDATE article
+SET boardId = 3
+WHERE id = 3;
