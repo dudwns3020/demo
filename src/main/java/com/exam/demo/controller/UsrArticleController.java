@@ -44,14 +44,14 @@ public class UsrArticleController {
 		}
 
 		ResultData<Integer> writeArticleRd = articleService.writeArticle(rq.getLoginedMemberId(), title, body);
-		
+
 		int id = writeArticleRd.getData1();
 
 		Article article = articleService.getArticle(rq.getLoginedMemberId(), id);
 
 		return Ut.jsReplace(Ut.f("%d번 게시물이 생성되었습니다.", id), "../article/list");
 	}
-	
+
 	@RequestMapping("/usr/article/write")
 	public String write(HttpServletRequest req, Model model) {
 
@@ -59,16 +59,21 @@ public class UsrArticleController {
 	}
 
 	@RequestMapping("/usr/article/list")
-	public String getArticles(HttpServletRequest req, Model model, int boardId, @RequestParam(defaultValue = "1") int page) {
+	public String getArticles(HttpServletRequest req, Model model, @RequestParam(defaultValue = "1") int boardId,
+			@RequestParam(defaultValue = "1") int page) {
 		Rq rq = (Rq) req.getAttribute("rq");
-		
-		Board board = boardService.getBoardId(boardId); 
-		
+
+		Board board = boardService.getBoardId(boardId);
+
+		if (board == null) {
+			return Ut.jsHistoryBack("존재하지 않는 게시판입니다.");
+		}
+
 		int totalPage = articleService.getArticlesCount();
-		
+
 		int itemsCountPage = 10;
-		
-		int pageCount = (int)Math.ceil((double)totalPage / itemsCountPage);
+
+		int pageCount = (int) Math.ceil((double) totalPage / itemsCountPage);
 
 		List<Article> articles = articleService.getArticles(rq.getLoginedMemberId(), itemsCountPage, page);
 
@@ -165,7 +170,7 @@ public class UsrArticleController {
 		if (article.getMemberId() != rq.getLoginedMemberId()) {
 			return Ut.jsHistoryBack(Ut.f("해당 게시물의 작성자가 아닙니다."));
 		}
-		
+
 		if (Ut.empty(title)) {
 			return Ut.jsHistoryBack("title을(를) 입력해주세요.");
 		}
@@ -176,7 +181,7 @@ public class UsrArticleController {
 //		ResultData actorCanModify = articleService.actorCanModify(rq.getLoginedMemberId(), article);
 
 		articleService.modifyArticle(rq.getLoginedMemberId(), id, title, body);
-		
+
 		return Ut.jsReplace(Ut.f("%d번 게시물이 수정되었습니다.", id), Ut.f("../article/detail?id=%d", id));
 	}
 }
